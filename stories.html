@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred and Strong Women</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #f0f0f0;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+        }
+
+        /* Background images for each woman */
+        .mary-bg { background-image: url('https://wallpapercave.com/wp/wp2658758.png'); }
+        .esther-bg { background-image: url('https://blog.judaicawebstore.com/wp-content/uploads/2024/02/AdobeStock_661604959-scaled.jpeg'); }
+        .ruth-bg { background-image: url('https://media.bible.art/1b096040-4155-44bd-882a-ebeb5dc4e2f9-compressed.jpg'); }
+        .deborah-bg { background-image: url('https://jesuschristsavior.net/wp-content/uploads/2024/03/6.-Legacy-of-Deborah-in-Biblical-Narrative.jpg'); }
+        .abigail-bg { background-image: url('https://meaning-of.net/wp-content/uploads/2023/12/v2-3nws6-3mccg.jpg'); }
+        .sarah-bg { background-image: url('https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Sarah.webp'); }
+        .rahab-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/09/Rahab-in-the-Bible-1.jpg'); }
+        .elizabeth-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/06/Elizabeth-in-the-bible.jpg'); }
+        .hannah-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/06/Hannah-in-the-Bible.jpg'); }
+        .mary-magdalene-bg { background-image: url('https://cms-imgp.jw-cdn.org/img/p/500100104/univ/art/500100104_univ_lsr_lg.jpg'); }
+        .bleeding-woman-bg { background-image: url('https://i.pinimg.com/originals/c6/0a/bf/c60abf06398fc9959e8e33f70fd6de3d.jpg'); }
+        .samaritan-bg { background-image: url('https://i.etsystatic.com/17734837/r/il/daa392/3429811056/il_fullxfull.3429811056_g0us.jpg'); }
+
+        .story-content {
+            padding: 20px;
+        }
+
+        .story-title {
+            font-size: 1.6em;
+            color: #4a5568;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .story-text {
+            color: #666;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        .story-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .story-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .story-button:active {
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #fff;
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Enhanced Modal Styles with Animated Background */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: modalSlideIn 0.4s ease-out;
+            position: relative;
+        }
+
+        .modal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            border-radius: 20px;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .modal-inner {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 0;
+        }
+
+        .close {
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: opacity 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close:hover {
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .verse-quote {
+            font-style: italic;
+            font-size: 1.05em;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="floating">Sacred and Strong Women</h1>
+            <p class="subtitle">Stories of Faith, Courage, and Divine Purpose</p>
+        </header>
+
+        <main class="stories-grid">
+            <div class="story-card">
+                <div class="story-image mary-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Mary, Mother of Jesus</h2>
+                    <p class="story-text">
+                        The young woman who said "yes" to God's incredible plan. Mary's faith and obedience changed the course of history.
+                    </p>
+                    <button class="story-button" onclick="showStory('Mary')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image esther-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Queen Esther</h2>
+                    <p class="story-text">
+                        "For such a time as this" - Esther risked everything to save her people from genocide with courage and wisdom.
+                    </p>
+                    <button class="story-button" onclick="showStory('Esther')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image ruth-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Ruth</h2>
+                    <p class="story-text">
+                        "Where you go, I will go" - Ruth's loyalty led her into God's redemptive plan and Jesus's lineage.
+                    </p>
+                    <button class="story-button" onclick="showStory('Ruth')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image deborah-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Deborah</h2>
+                    <p class="story-text">
+                        The only female judge of Israel, a prophetess and warrior who led her people to victory and peace.
+                    </p>
+                    <button class="story-button" onclick="showStory('Deborah')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image abigail-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Abigail</h2>
+                    <p class="story-text">
+                        The wise woman who prevented bloodshed with her quick thinking and became David's wife through her wisdom.
+                    </p>
+                    <button class="story-button" onclick="showStory('Abigail')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image sarah-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Sarah</h2>
+                    <p class="story-text">
+                        The mother of nations who laughed at God's promise but saw His faithfulness in her old age.
+                    </p>
+                    <button class="story-button" onclick="showStory('Sarah')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image rahab-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Rahab</h2>
+                    <p class="story-text">
+                        The woman who chose faith over fear, protecting God's spies and securing her place in Jesus's lineage.
+                    </p>
+                    <button class="story-button" onclick="showStory('Rahab')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image elizabeth-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Elizabeth</h2>
+                    <p class="story-text">
+                        The mother of John the Baptist who recognized Jesus even before He was born and blessed Mary with prophetic words.
+                    </p>
+                    <button class="story-button" onclick="showStory('Elizabeth')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image hannah-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Hannah</h2>
+                    <p class="story-text">
+                        The woman who prayed desperately for a son and kept her promise to dedicate him to God's service.
+                    </p>
+                    <button class="story-button" onclick="showStory('Hannah')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image mary-magdalene-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">Mary Magdalene</h2>
+                    <p class="story-text">
+                        The first witness to Jesus's resurrection who was transformed from darkness to become His devoted follower.
+                    </p>
+                    <button class="story-button" onclick="showStory('MaryMagdalene')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image bleeding-woman-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">The Woman Who Bled</h2>
+                    <p class="story-text">
+                        After 12 years of suffering, her faith to touch Jesus's garment brought instant healing and public restoration.
+                    </p>
+                    <button class="story-button" onclick="showStory('BleedingWoman')">Learn Her Story</button>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image samaritan-bg"></div>
+                <div class="story-content">
+                    <h2 class="story-title">The Samaritan Woman</h2>
+                    <p class="story-text">
+                        The woman at the well who encountered Jesus and became the first evangelist to her entire city.
+                    </p>
+                    <button class="story-button" onclick="showStory('SamaritanWoman')">Learn Her Story</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="footer-text">"She is clothed with strength and dignity; she can laugh at the days to come." - Proverbs 31:25</p>
+        </footer>
+    </div>
+
+    <!-- Enhanced Modal with animated background -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <div id="modalBackground" class="modal-background"></div>
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <h2 id="modalTitle" class="modal-title"></h2>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <p id="modalText" class="modal-text"></p>
+                <div id="modalVerse" class="verse-quote"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced stories object with verses and background images
+        const stories = {
+            'Mary': {
+                title: 'Mary, Mother of Jesus',
+                text: 'Mary was a young woman from Nazareth who received the most extraordinary news from the angel Gabriel. Despite the challenges she would face, Mary responded with faith: "I am the Lord\'s servant. May your word to me be fulfilled." Her courage to say yes to God\'s plan, even when she didn\'t understand it fully, shows us the beauty of faithful obedience. Mary\'s song of praise (the Magnificat) reveals her deep understanding of God\'s character and His care for the humble and lowly. She walked through the joy of Jesus\'s birth, the confusion of His ministry, and the agony of His crucifixion, always treasuring these things in her heart.',
+                verse: '"And Mary said, \'My soul glorifies the Lord and my spirit rejoices in God my Savior.\'" - Luke 1:46-47',
+                background: 'https://wallpapercave.com/wp/wp2658758.png'
+            },
+            'Esther': {
+                title: 'Queen Esther',
+                text: 'Esther was an orphaned Jewish girl who became queen of Persia through a beauty contest she never wanted to enter. When her people faced annihilation through the evil plot of Haman, her cousin Mordecai reminded her that perhaps she had come to her royal position "for such a time as this." Despite the risk to her own life—approaching the king uninvited could mean death—Esther courageously fasted, prayed, and then approached the king to plead for her people. Her story teaches us about divine timing, courage in the face of danger, and using our influence to protect others. Through her bravery, the Jewish people were saved and their enemies defeated.',
+                verse: '"And who knows but that you have come to your royal position for such a time as this?" - Esther 4:14',
+                background: 'https://blog.judaicawebstore.com/wp-content/uploads/2024/02/AdobeStock_661604959-scaled.jpeg'
+            },
+            'Ruth': {
+                title: 'Ruth',
+                text: 'Ruth was a Moabite woman who chose to stay with her Israelite mother-in-law Naomi after both their husbands died. Her famous words, "Where you go I will go, and where you stay I will stay. Your people will be my people and your God my God," show incredible loyalty and faith. Ruth\'s faithfulness led her to glean in the fields of Boaz, who noticed her character and became her kinsman-redeemer. She became the great-grandmother of King David and is listed in Jesus\'s genealogy. Ruth\'s story shows us that God can use anyone—even a foreign woman—in His redemptive plan, and that loyalty and kindness are richly rewarded.',
+                verse: '"But Ruth replied, \'Don\'t urge me to leave you or to turn back from you. Where you go I will go, and where you stay I will stay.\'" - Ruth 1:16',
+                background: 'https://media.bible.art/1b096040-4155-44bd-882a-ebeb5dc4e2f9-compressed.jpg'
+            },
+            'Deborah': {
+                title: 'Deborah',
+                text: 'Deborah was a prophetess and the fourth judge of Israel, the only woman to hold this position. She held court under the Palm of Deborah between Ramah and Bethel, and the Israelites came to her for judgment on their disputes. When God called Israel to battle against their Canaanite oppressors led by Sisera, Deborah courageously agreed to accompany Barak into battle, prophesying that the honor of victory would go to a woman. Her leadership and faith led to a decisive victory, and her song of triumph is one of the oldest poems in the Bible. Deborah\'s leadership brought 40 years of peace to Israel, showing us that God calls and equips women for leadership roles in His kingdom.',
+                verse: '"Wake up, wake up, Deborah! Wake up, wake up, break out in song!" - Judges 5:12',
+                background: 'https://jesuschristsavior.net/wp-content/uploads/2024/03/6.-Legacy-of-Deborah-in-Biblical-Narrative.jpg'
+            },
+            'Abigail': {
+                title: 'Abigail',
+                text: 'Abigail was married to Nabal, a wealthy but foolish and harsh man. When David and his men protected Nabal\'s shepherds in the wilderness, Nabal rudely refused to provide them with provisions. David was furious and set out with 400 men to destroy Nabal and his household. Abigail, described as intelligent and beautiful, quickly gathered supplies and rode out to meet David. With wisdom and humility, she apologized for her husband\'s behavior and prevented a massacre. Her quick thinking and gracious words turned away David\'s wrath. After Nabal\'s death, David married Abigail, recognizing her wisdom and character. Her story shows us the power of wise words and humble action to prevent disaster.',
+                verse: '"She fell at his feet and said: \'Pardon your servant, my lord, and let me speak to you; hear what your servant has to say.\'" - 1 Samuel 25:24',
+                background: 'https://meaning-of.net/wp-content/uploads/2023/12/v2-3nws6-3mccg.jpg'
+            },
+            'Sarah': {
+                title: 'Sarah',
+                text: 'Sarah was Abraham\'s wife who journeyed with him from Ur to the Promised Land. God promised Abraham that he would become the father of many nations, but Sarah remained barren for decades. In her impatience, she gave her servant Hagar to Abraham, creating family conflict. When God\'s messengers promised that Sarah would have a son in her old age, she laughed—earning her son the name Isaac, meaning "laughter." At age 90, Sarah gave birth to the child of promise, proving that nothing is impossible with God. Sarah\'s story teaches us about the consequences of trying to help God fulfill His promises in our own way, but also about His faithfulness to keep His word even when it seems impossible.',
+                verse: '"Is anything too hard for the Lord? I will return to you at the appointed time next year, and Sarah will have a son." - Genesis 18:14',
+                background: 'https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Sarah.webp'
+            },
+            'Rahab': {
+                title: 'Rahab',
+                text: 'Rahab was a prostitute living in Jericho when Joshua\'s spies came to scout the city before Israel\'s attack. Despite her profession and nationality, Rahab had heard of the mighty works of the God of Israel and believed in Him. When the king of Jericho sought the spies, Rahab hid them on her roof and misdirected their pursuers. She made the spies promise to spare her and her family when Jericho fell. True to their word, when the walls came tumbling down, Rahab and her household were saved. She married into the tribe of Judah and became the mother of Boaz, placing her in the lineage of King David and Jesus Christ. Rahab\'s story shows us that God can redeem anyone, regardless of their past, and use them for His purposes.',
+                verse: '"By faith the prostitute Rahab, because she welcomed the spies, was not killed with those who were disobedient." - Hebrews 11:31',
+                background: 'https://answeredfaith.com/wp-content/uploads/2024/09/Rahab-in-the-Bible-1.jpg'
+            },
+            'Elizabeth': {
+                title: 'Elizabeth',
+                text: 'Elizabeth was a descendant of Aaron, married to the priest Zechariah. They were both righteous before God but had no children and were well advanced in years. When Zechariah was serving in the temple, the angel Gabriel appeared and announced that Elizabeth would bear a son who would prepare the way for the Messiah. When Mary, her young relative, came to visit after her own angelic encounter, Elizabeth was filled with the Holy Spirit. The baby in her womb (John the Baptist) leaped for joy, and Elizabeth proclaimed prophetic blessings over Mary. Elizabeth\'s story shows us that God\'s timing is perfect, and He can use anyone—even the elderly—to fulfill His purposes. Her faith and joy in God\'s miraculous work encourage us to believe in His power to do the impossible.',
+                verse: '"When Elizabeth heard Mary\'s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit." - Luke 1:41',
+                background: 'https://answeredfaith.com/wp-content/uploads/2024/06/Elizabeth-in-the-bible.jpg'
+            },
+            'Hannah': {
+                title: 'Hannah',
+                text: 'Hannah was one of two wives of Elkanah, but she was barren while the other wife, Peninnah, had children. Year after year, Peninnah taunted Hannah about her childlessness, causing her deep anguish. During one of their annual trips to Shiloh to worship, Hannah prayed with such intensity that the priest Eli thought she was drunk. She made a vow to God that if He gave her a son, she would dedicate him to the Lord\'s service for his entire life. God answered her prayer, and she gave birth to Samuel. True to her word, Hannah brought young Samuel to the temple to serve under Eli. Her song of praise after Samuel\'s birth is similar to Mary\'s Magnificat, showing her deep faith and understanding of God\'s character. Hannah\'s story teaches us about persistent prayer, keeping our promises to God, and trusting Him with our deepest desires.',
+                verse: '"In bitterness of soul Hannah wept much and prayed to the Lord." - 1 Samuel 1:10',
+                background: 'https://answeredfaith.com/wp-content/uploads/2024/06/Hannah-in-the-Bible.jpg'
+            },
+            'MaryMagdalene': {
+                title: 'Mary Magdalene',
+                text: 'Mary Magdalene was a woman from whom Jesus cast out seven demons, transforming her life completely. She became one of His most devoted followers, supporting His ministry financially and following Him throughout His travels. She was present at the crucifixion when many of the male disciples had fled, and she was among the women who went to anoint Jesus\'s body after the Sabbath. Mary Magdalene has the incredible honor of being the first person to see the risen Christ. When she initially mistook Him for the gardener, Jesus called her by name, and she recognized Him immediately. Jesus commissioned her to go and tell the disciples about His resurrection, making her the first evangelist of the good news. Her story shows us that no matter how broken our past, Jesus can completely transform our lives and use us for His glory.',
+                verse: '"Jesus said to her, \'Mary.\' She turned toward him and cried out in Aramaic, \'Rabboni!\' (which means \'Teacher\')." - John 20:16',
+                background: 'https://cms-imgp.jw-cdn.org/img/p/500100104/univ/art/500100104_univ_lsr_lg.jpg'
+            },
+            'BleedingWoman': {
+                title: 'The Woman Who Bled',
+                text: 'This unnamed woman had suffered from bleeding for twelve long years, spending all her money on doctors who couldn\'t help her. According to Jewish law, her condition made her ceremonially unclean, isolating her from society and religious life. When she heard that Jesus was passing through, she fought through the crowd, believing that if she could just touch the edge of His cloak, she would be healed. The moment she touched His garment, her bleeding stopped and she felt in her body that she was freed from her suffering. Jesus immediately knew that power had gone out from Him and asked who had touched Him. Afraid but knowing she couldn\'t hide, the woman fell before Him and told Him the whole truth. Jesus responded with incredible compassion, calling her "daughter" and commending her faith. He declared that her faith had healed her and told her to go in peace. Her story shows us that no suffering is too long, no condition too shameful, and no crowd too thick to keep us from reaching Jesus.',
+                verse: '"He said to her, \'Daughter, your faith has healed you. Go in peace and be freed from your suffering.\'" - Mark 5:34',
+                background: 'https://i.pinimg.com/originals/c6/0a/bf/c60abf06398fc9959e8e33f70fd6de3d.jpg'
+            },
+            'SamaritanWoman': {
+                title: 'The Samaritan Woman',
+                text: 'This woman came to draw water from Jacob\'s well at noon, the hottest part of the day, likely to avoid the other women who would come in the cooler morning hours. Her isolation suggests a troubled past—she had been married five times and was currently living with a man who wasn\'t her husband. When Jesus asked her for a drink, she was shocked that a Jewish man would speak to her, a Samaritan woman. Jesus offered her "living water" that would quench her thirst forever. As their conversation deepened, Jesus revealed that He knew all about her past, yet spoke to her with respect and offered her salvation. She became the first person to whom Jesus clearly revealed that He was the Messiah. Leaving her water jar behind, she ran back to her town and told everyone about Jesus. Her testimony was so compelling that many Samaritans believed in Jesus because of her words. Her story shows us that Jesus breaks down all barriers—ethnic, gender, and moral—to offer salvation to everyone.',
+                verse: '"Many of the Samaritans from that town believed in him because of the woman\'s testimony, \'He told me everything I ever did.\'" - John 4:39',
+                background: 'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=800&h=600&fit=crop'
+            }
+        };
+
+        function showStory(womanName) {
+            const story = stories[womanName];
+            const modal = document.getElementById('storyModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalText = document.getElementById('modalText');
+            const modalVerse = document.getElementById('modalVerse');
+            const modalBackground = document.getElementById('modalBackground');
+
+            modalTitle.textContent = story.title;
+            modalText.textContent = story.text;
+            modalVerse.textContent = story.verse;
+            modalBackground.style.backgroundImage = `url('${story.background}')`;
+            
+            modal.style.display = 'block';
+
+            // Add animation class
+            modal.querySelector('.modal-content').style.animation = 'modalSlideIn 0.4s ease-out';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('storyModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('storyModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Add some interactive animations when the page loads
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.story-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add a simple greeting alert when the page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                alert('Welcome to Sacred and Strong Women! Click on any story button to learn more about these incredible biblical women.');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
