@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Space</title>
+    <style>
+        :root {
+            --primary: #6a82fb;
+            --secondary: #fc5c7d;
+            --bg: #f7f7fa;
+            --card: #fff;
+            --shadow: 0 4px 16px rgba(106,130,251,0.08);
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
+            color: #222;
+        }
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        /* Navigation using Flexbox */
+        nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 0.5rem;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--secondary);
+        }
+        /* Main content using CSS Grid */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        h2 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+        }
+        /* Contact Form */
+        .contact-form label {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f9f9fc;
+        }
+        .contact-form button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+        .error {
+            color: #fc5c7d;
+            font-size: 0.95em;
+            margin-bottom: 0.5rem;
+        }
+        /* To-Do List */
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+        .todo-list li {
+            background: #f1f3fa;
+            margin-bottom: 0.7rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(106,130,251,0.04);
+        }
+        .todo-list li.completed {
+            text-decoration: line-through;
+            color: #aaa;
+            background: #e6e6ef;
+        }
+        .todo-list button {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.95em;
+            margin-left: 0.5rem;
+            transition: background 0.2s;
+        }
+        .todo-list button:hover {
+            background: var(--primary);
+        }
+        .add-todo {
+            display: flex;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+        }
+        .add-todo input {
+            flex: 1;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .add-todo button {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .add-todo button:hover {
+            background: var(--secondary);
+        }
+        /* Image Gallery */
+        #galleryGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        #galleryGrid div {
+            position: relative;
+        }
+        #galleryGrid img {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #aaa;
+        }
+        #galleryGrid button {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: #fc5c7d;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* Story Images Backgrounds */
+        .hannah-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/06/Hannah-in-the-Bible.jpg'); background-size: cover; background-position: center; }
+        .mary-magdalene-bg { background-image: url('https://cms-imgp.jw-cdn.org/img/p/500100104/univ/art/500100104_univ_lsr_lg.jpg'); background-size: cover; background-position: center; }
+        .bleeding-woman-bg { background-image: url('https://i.pinimg.com/originals/c6/0a/bf/c60abf06398fc9959e8e33f70fd6de3d.jpg'); background-size: cover; background-position: center; }
+        .samaritan-bg { background-image: url('https://i.etsystatic.com/17734837/r/il/daa392/3429811056/il_fullxfull.3429811056_g0us.jpg'); background-size: cover; background-position: center; }
+        .esther-bg { background-image: url('https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Esther.webp'); background-size: cover; background-position: center; }
+        .ruth-bg { background-image: url('https://media.bible.art/1b096040-4155-44bd-882a-ebeb5dc4e2f9-compressed.jpg'); background-size: cover; background-position: center; }
+        .deborah-bg { background-image: url('https://jesuschristsavior.net/wp-content/uploads/2024/03/6.-Legacy-of-Deborah-in-Biblical-Narrative.jpg'); background-size: cover; background-position: center; }
+        .abigail-bg { background-image: url('https://meaning-of.net/wp-content/uploads/2023/12/v2-3nws6-3mccg.jpg'); background-size: cover; background-position: center; }
+        .sarah-bg { background-image: url('https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Sarah.webp'); background-size: cover; background-position: center; }
+        .rahab-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/09/Rahab-in-the-Bible-1.jpg'); background-size: cover; background-position: center; }
+        .elizabeth-bg { background-image: url('https://answeredfaith.com/wp-content/uploads/2024/06/Elizabeth-in-the-bible.jpg'); background-size: cover; background-position: center; }
+        .story-image { height: 120px; width: 100%; }
+        /* Responsive layout with media queries */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0;
+            }
+            .card {
+                padding: 1.2rem 0.7rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Space</h1>
+        <p>Practice HTML, CSS, and JavaScript DOM skills in one unique, responsive site!</p>
+    </header>
+    <nav>
+        <a href="#contact">Contact</a>
+        <a href="#todo">To-Do List</a>
+    </nav>
+    <div class="container">
+        <!-- Stories Section -->
+        <section class="card" id="stories">
+            <h2>Women of the Bible Stories</h2>
+            <div class="stories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem;">
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image hannah-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Hannah</h3>
+                        <button class="story-button" onclick="addTask('Read about Hannah')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Hannah','https://answeredfaith.com/wp-content/uploads/2024/06/Hannah-in-the-Bible.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image mary-magdalene-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Mary Magdalene</h3>
+                        <button class="story-button" onclick="addTask('Read about Mary Magdalene')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Mary Magdalene','https://cms-imgp.jw-cdn.org/img/p/500100104/univ/art/500100104_univ_lsr_lg.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image bleeding-woman-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">The Woman Who Bled</h3>
+                        <button class="story-button" onclick="addTask('Read about The Woman Who Bled')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('The Woman Who Bled','https://i.pinimg.com/originals/c6/0a/bf/c60abf06398fc9959e8e33f70fd6de3d.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image samaritan-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">The Samaritan Woman</h3>
+                        <button class="story-button" onclick="addTask('Read about The Samaritan Woman')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('The Samaritan Woman','https://i.etsystatic.com/17734837/r/il/daa392/3429811056/il_fullxfull.3429811056_g0us.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image esther-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Esther</h3>
+                        <button class="story-button" onclick="addTask('Read about Esther')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Esther','https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Esther.webp')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image ruth-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Ruth</h3>
+                        <button class="story-button" onclick="addTask('Read about Ruth')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Ruth','https://media.bible.art/1b096040-4155-44bd-882a-ebeb5dc4e2f9-compressed.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image deborah-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Deborah</h3>
+                        <button class="story-button" onclick="addTask('Read about Deborah')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Deborah','https://jesuschristsavior.net/wp-content/uploads/2024/03/6.-Legacy-of-Deborah-in-Biblical-Narrative.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image abigail-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Abigail</h3>
+                        <button class="story-button" onclick="addTask('Read about Abigail')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Abigail','https://meaning-of.net/wp-content/uploads/2023/12/v2-3nws6-3mccg.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image sarah-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Sarah</h3>
+                        <button class="story-button" onclick="addTask('Read about Sarah')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Sarah','https://d3owcl6pd5zkqc.cloudfront.net/images/figures/Sarah.webp')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image rahab-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Rahab</h3>
+                        <button class="story-button" onclick="addTask('Read about Rahab')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Rahab','https://answeredfaith.com/wp-content/uploads/2024/09/Rahab-in-the-Bible-1.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+                <div class="story-card" style="background: #f9f9fc; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(106,130,251,0.06);">
+                    <div class="story-image elizabeth-bg"></div>
+                    <div class="story-content" style="padding: 1rem;">
+                        <h3 class="story-title" style="margin: 0 0 0.5rem 0; color: #4a5568;">Elizabeth</h3>
+                        <button class="story-button" onclick="addTask('Read about Elizabeth')">Add to To-Do</button>
+                        <button class="story-button" onclick="addGalleryImage('Elizabeth','https://answeredfaith.com/wp-content/uploads/2024/06/Elizabeth-in-the-bible.jpg')">Add to Gallery</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Image Gallery Card -->
+        <section class="card" id="gallery">
+            <h2>Image Gallery</h2>
+            <div id="galleryGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;"></div>
+        </section>
+        <!-- Contact Form Card -->
+        <section class="card" id="contact">
+            <h2>Contact Us</h2>
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="error" id="formError"></div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your Name">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="you@email.com">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Type your message..."></textarea>
+                <button type="submit">Send</button>
+            </form>
+            <div id="formSuccess" style="color: var(--primary); font-weight: 500; margin-top: 1rem;"></div>
+        </section>
+        <!-- To-Do List Card -->
+        <section class="card" id="todo">
+            <h2>Dynamic To-Do List</h2>
+            <form class="add-todo" id="addTodoForm">
+                <input type="text" id="newTodo" placeholder="Add a new task..." required>
+                <button type="submit">Add</button>
+            </form>
+            <ul class="todo-list" id="todoList"></ul>
+        </section>
+    </div>
+    <script>
+        // Contact Form Validation
+        const contactForm = document.getElementById('contactForm');
+        const formError = document.getElementById('formError');
+        const formSuccess = document.getElementById('formSuccess');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formError.textContent = '';
+            formSuccess.textContent = '';
+            const name = contactForm.name.value.trim();
+            const email = contactForm.email.value.trim();
+            const message = contactForm.message.value.trim();
+            let valid = true;
+            if (!name || !email || !message) {
+                formError.textContent = 'All fields are required.';
+                valid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                formError.textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+            if (valid) {
+                // Store user info in localStorage
+                let contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                contacts.push({ name, email, message, date: new Date().toISOString() });
+                localStorage.setItem('contacts', JSON.stringify(contacts));
+                formSuccess.textContent = 'Thank you for contacting us, ' + name + '!';
+                contactForm.reset();
+            }
+        });
+        // Dynamic To-Do List
+        const addTodoForm = document.getElementById('addTodoForm');
+        const newTodo = document.getElementById('newTodo');
+        const todoList = document.getElementById('todoList');
+        addTodoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const task = newTodo.value.trim();
+            if (task) {
+                addTask(task);
+                newTodo.value = '';
+            }
+        });
+        function addTask(task) {
+            const li = document.createElement('li');
+            li.textContent = task;
+            // Complete button
+            const completeBtn = document.createElement('button');
+            completeBtn.textContent = 'Complete';
+            completeBtn.onclick = function() {
+                li.classList.toggle('completed');
+            };
+            // Remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.onclick = function() {
+                todoList.removeChild(li);
+            };
+            li.appendChild(completeBtn);
+            li.appendChild(removeBtn);
+            todoList.appendChild(li);
+        }
+        // Image Gallery with Lightbox
+        const galleryGrid = document.getElementById('galleryGrid');
+        let galleryImages = [];
+        function addGalleryImage(title, url) {
+            galleryImages.push({title, url});
+            renderGallery();
+        }
+        function removeGalleryImage(idx) {
+            galleryImages.splice(idx, 1);
+            renderGallery();
+        }
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
+            galleryImages.forEach((img, idx) => {
+                const div = document.createElement('div');
+                div.style.position = 'relative';
+                div.innerHTML = `<img src="${img.url}" alt="${img.title}" style="width:100%;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px #aaa;" onclick="openLightbox(${idx})">
+                <button style="position:absolute;top:6px;right:6px;background:#fc5c7d;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-weight:bold;" onclick="event.stopPropagation();removeGalleryImage(${idx})">&times;</button>`;
+                galleryGrid.appendChild(div);
+            });
+        }
+        // Lightbox
+        function openLightbox(idx) {
+            const img = galleryImages[idx];
+            let lightbox = document.getElementById('lightboxModal');
+            if (!lightbox) {
+                lightbox = document.createElement('div');
+                lightbox.id = 'lightboxModal';
+                lightbox.style.position = 'fixed';
+                lightbox.style.top = 0;
+                lightbox.style.left = 0;
+                lightbox.style.width = '100vw';
+                lightbox.style.height = '100vh';
+                lightbox.style.background = 'rgba(0,0,0,0.8)';
+                lightbox.style.display = 'flex';
+                lightbox.style.alignItems = 'center';
+                lightbox.style.justifyContent = 'center';
+                lightbox.style.zIndex = 1000;
+                lightbox.onclick = function(e) { if (e.target === lightbox) lightbox.remove(); };
+                document.body.appendChild(lightbox);
+            }
+            lightbox.innerHTML = `<div style="background:#fff;padding:1.5rem;border-radius:12px;max-width:90vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;">
+                <img src="${img.url}" alt="${img.title}" style="max-width:70vw;max-height:60vh;border-radius:8px;box-shadow:0 4px 24px #222;">
+                <div style="margin-top:1rem;font-size:1.1em;font-weight:500;color:#4a5568;">${img.title}</div>
+                <button style="margin-top:1.2rem;background:#fc5c7d;color:#fff;border:none;border-radius:8px;padding:0.6rem 1.5rem;font-size:1em;cursor:pointer;" onclick="document.getElementById('lightboxModal').remove()">Close</button>
+            </div>`;
+        }
+    </script>
+</body>
+</html>
